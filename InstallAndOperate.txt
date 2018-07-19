@@ -1,0 +1,34 @@
+Installing Trading View Extender (TVE)...
+
+1. Install Chrome if you have not done so already. 
+2. Pull down the TVE code from the GIT repository onto a local drive.
+3. Go to chrome://extensions/ and check the box for Developer mode in the top right.
+4. Go back to the chrome://extensions/ page and click the Load unpacked extension button and select the folder into which you pulled the TVE code.
+5. The extension is now installed and you should see a greyed out version of the .png file (the 'page action') from the TVE images directory appear on the Chrome toolbar.
+6. Once you navigate to https://uk.tradingview.com this icon will become full colour to indicate that the extension is active.
+7. To operate the extension setup an alert trigger on any chart within TV and add some custom text of the form...
+
+  TVE:{"ecn":"Binance","inst":"USDGBP", "side":"buy","type":"limit","tif":"GTD","price":0.84,"size":100,"take":0.05,"stop":-0.05}:EVT
+
+8. Start up the browser debugger (F12) and select the console tab... you should see log lines to the effect of...
+
+    TVExtender Content...setting up comms port to background
+    Background:connection established
+    Setting up observer...
+
+9. The next time an alert triggers within TV you will see something akin to the following in the console log...
+
+    MutationRecord {type: "childList", target: tbody, addedNodes: NodeList(1), removedNodes: NodeList(0), previousSibling: null, …}
+    Thu Jul 19 2018 16:06:58 GMT+0100 (British Summer Time)
+    Thu Jul 19 2018 16:07:00 GMT+0100 (British Summer Time)
+    DTS Diff: seconds = 2
+    {ecn: "Binance", inst: "USDGBP", side: "buy", type: "limit", tif: "GTD", …}
+
+10. To ensure the background script is also receiving the extracted orders, go to chrome://extensions and select the Background Page hyperlink from Trading View Extender 1.0. This will open another browser debugger showing the background script output, you should see log lines similar to the following...
+
+    Incoming connection on port: TVE-comms-port
+    Object
+        payload:{ecn: "Binance", inst: "USDGBP", side: "buy", type: "limit", tif: "GTD", ...}
+        type: order
+        __proto__: Object
+
