@@ -7,6 +7,8 @@ chrome.runtime.onInstalled.addListener(function() {
             port.postMessage({type:"connAck", payload:"Background:connection established"});
             port.onMessage.addListener(function(msg) {
                 console.log(msg);            
+                // SHM - send order details to TVS here...
+
             });
         }
     });
