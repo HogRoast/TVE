@@ -3,7 +3,11 @@
 import * as tvs from '/modules/tvs_exports.js';
 
 function createOrderParams(msg) {
-    // SHM - should the parameter validation be done here or elsewhere?
+    if(!(inst in msg && size in msg && side in msg 
+        && type in msg && price in msg)) {
+        throw 'Order message does not contain required parameters.';
+    }
+
     var params = `
 accountId=${tvs.accountId}&
 instrument=${msg.inst}&
