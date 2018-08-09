@@ -38,7 +38,7 @@ function processMessage(msg) {
         };
         request.send(createOrderParams(msg));
     } else {
-        console.log('Unhandled message type : ' + msg.type);
+        throw 'Unhandled message type : ' + msg.type;
     }
     return;
 }
