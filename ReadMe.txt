@@ -12,4 +12,7 @@ The extension is only set to work with the UK version of the TV website...
 
 https://uk.tradingview.com
 
-Currently it is only extracting the order text and then sending a message to the background script. Eventually from here it will be forwarded to another server which actually has exchange connectivity and can parse and execute the order.
+Currently it is extracting the order text and then sending a message to the
+background script. From here it is forwarded via HTTP request to another server (TVS) which actually has exchange connectivity and can parse and execute the order.
+
+The extension is built using Webpack and transpiled using Babel, all the appropriate packages are installed in the node_modules directory. The config files can be found at the top of the project (.babelrc, webpack.config.js and package.json).

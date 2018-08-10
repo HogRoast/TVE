@@ -3,7 +3,8 @@ Installing Trading View Extender (TVE)...
 1. Install Chrome if you have not done so already. 
 2. Pull down the TVE code from the GIT repository onto a local drive.
 3. Go to chrome://extensions/ and check the box for Developer mode in the top right.
-4. Go back to the chrome://extensions/ page and click the Load unpacked extension button and select the folder into which you pulled the TVE code.
+4. Go back to the chrome://extensions/ page and click the Load unpacked
+extension button and select the 'dist' folder under the directory into which you pulled the TVE code.
 5. The extension is now installed and you should see a greyed out version of the .png file (the 'page action') from the TVE images directory appear on the Chrome toolbar.
 6. Once you navigate to https://uk.tradingview.com this icon will become full colour to indicate that the extension is active.
 7. To operate the extension setup an alert trigger on any chart within TV and add some custom text of the form...
@@ -32,3 +33,6 @@ Installing Trading View Extender (TVE)...
         type: order
         __proto__: Object
 
+11. You will also see an attempt to post the order message to the TVS server.
+
+12. The extension is now built using Webpack and transpiled using Babel, all the appropriate packages are installed in the node_modules directory. The config files can be found at the top of the project (.babelrc, webpack.config.js and package.json).
