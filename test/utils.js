@@ -3,6 +3,7 @@
 const assert = require('assert');
 const bkgd = require('../es7/modules/background_utils');
 const cont = require('../es7/modules/content_utils');
+const math = require('../es7/modules/math_utils');
 const {XMLHttpRequest} = require('../mock/xmlhttprequest');
 
 describe('background_utils', function() {
@@ -79,5 +80,23 @@ describe('background_utils', function() {
             assert.equal(request.body, 'accountId=accountId_Example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&');
         });
     });
+
 });
 
+describe('math_utils', function() {
+    describe('dps', function() {
+
+        it('returns a foating point rounded to n decimal places', function() {
+            assert.equal(math.dps(0.43433454, 3), 0.434);
+            assert.equal(math.dps(0.43433454, 1), 0.4);
+            assert.equal(math.dps(0.43433454, 6), 0.434335);
+            assert.equal(math.dps(0, 6), 0);
+        });
+        
+        it('does not work properly if n > my epsilon dps', function() {
+            assert.notEqual(math.dps(0.23849874982789, 11), 0.238498749828);
+            // 0.0000000001
+            // 0.23849874982789
+        });
+    });
+});
