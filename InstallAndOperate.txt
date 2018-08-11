@@ -36,3 +36,9 @@ extension button and select the 'dist' folder under the directory into which you
 11. You will also see an attempt to post the order message to the TVS server.
 
 12. The extension is now built using Webpack and transpiled using Babel, all the appropriate packages are installed in the node_modules directory. The config files can be found at the top of the project (.babelrc, webpack.config.js and package.json).
+
+13. Included the Mocha test framework and created unit tests under the 'test'
+directory. Run tests using 'npm test' from top level directory. NOTE: the
+pretest script will transpile the code with UMD style module replacement into
+the es7 directory. I need to do this so that I can continue to use new style
+imports/exports in the src but require in tests!
