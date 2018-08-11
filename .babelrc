@@ -1,8 +1,9 @@
 {
-    "presets": [
-        ["env", {
-            "modules": false
-        }]
+    "presets": [ 
+        "env",
     ],
-    "plugins": ["transform-async-to-generator"]
+    "plugins": [
+        "transform-async-to-generator",
+        "transform-es2015-modules-umd"
+    ]
 }

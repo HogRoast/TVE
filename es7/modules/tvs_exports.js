@@ -17,7 +17,7 @@
     value: true
   });
   // SHM - account id hardcoded for testing purposes
-  var accountId = exports.accountId = "accountId_example";
+  var accountId = exports.accountId = "accountId_Example";
   var baseURL = exports.baseURL = "http://localhost:8080/tradingview/v1/ui/";
-  var sendOrderURL = exports.sendOrderURL = baseURL + ("/tradingview/v1/accounts/" + accountId + "/orders");
+  var sendOrderURL = exports.sendOrderURL = baseURL + ("accounts/" + accountId + "/orders");
 });

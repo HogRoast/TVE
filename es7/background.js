@@ -39,7 +39,12 @@
                 port.postMessage({ type: 'connAck', payload: 'Background:connection established' });
                 port.onMessage.addListener(function (msg) {
                     console.log(msg);
-                    processMessage(msg);
+                    // SHM - create requestFactory
+                    var factory = new Object();
+                    factory.create = function () {
+                        return new XMLHttpRequest();
+                    };
+                    processMessage(msg, XMLHttpRequest);
                 });
             }
         });

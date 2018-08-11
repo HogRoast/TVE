@@ -4,7 +4,7 @@
   "description": "A chrome extension for intercepting TV alerts",
   "main": "background.js",
   "scripts": {
-    "pretest" : "babel src -d es7 --plugins transform-es2015-modules-umd",
+    "pretest" : "babel src -d es7",
     "test" : "mocha",
     "build": "webpack"
   },
