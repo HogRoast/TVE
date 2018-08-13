@@ -28,7 +28,7 @@ describe('background_utils', function() {
         it('returns string of params with required fields', function() {
             var order = JSON.parse('{"inst":"USDGBP", "side":"buy","type":"limit","price":0.84,"size":100}');
             var params = bkgd.createOrderParams(order);
-            var expected = 'accountId=accountId_Example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&';
+            var expected = 'accountId=accountId_example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&';
             assert.equal(params, expected);
             assert.equal(debugLog.count, 1);
             assert.equal(debugLog.lines[debugLog.count-1], expected);
@@ -37,7 +37,7 @@ describe('background_utils', function() {
         it('returns string of params with required and optional fields', function() {
             var order = JSON.parse('{"ecn":"Binance","inst":"USDGBP", "side":"buy","type":"limit","tif":"GTC","goodTil":20180812,"price":0.84,"size":100,"take":0.05,"stop":-0.05,"digSig":897935849,"id":101}');
             var params = bkgd.createOrderParams(order);
-            var expected = 'accountId=accountId_Example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&stopPrice=0.79&durationType=GTC&durationDateTime=20180812&stopLoss=0.79&takeProfit=0.89&digitalSignature=897935849&requestId=101&';
+            var expected = 'accountId=accountId_example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&stopPrice=0.79&durationType=GTC&durationDateTime=20180812&stopLoss=0.79&takeProfit=0.89&digitalSignature=897935849&requestId=101&';
             assert.equal(params, expected);
             assert.equal(debugLog.count, 1);
             assert.equal(debugLog.lines[debugLog.count-1], expected);
@@ -96,9 +96,9 @@ describe('background_utils', function() {
             bkgd.processMessage(msg, factory); 
 
             assert.equal(request.method, 'POST');
-            assert.equal(request.url, 'http://localhost:8080/tradingview/v1/ui/accounts/accountId_Example/orders');
+            assert.equal(request.url, 'http://localhost:8080/tradingview/v1/ui/accounts/accountId_example/orders');
             assert.equal(request.headers['Content-type'], 'application/x-www-form-urlencoded');
-            var expected = 'accountId=accountId_Example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&';
+            var expected = 'accountId=accountId_example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&';
             assert.equal(request.body, expected);
             assert.equal(debugLog.count, 1)
             assert.equal(debugLog.lines[debugLog.count-1], expected)
