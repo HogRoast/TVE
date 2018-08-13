@@ -9,7 +9,7 @@ function createOrderParams(order) {
         throw new Error('Order message does not contain required parameters.');
     }
     var params = `accountId=${tvs.accountId}&instrument=${order.inst}&qty=${order.size}&side=${order.side}&type=${order.type}&limitPrice=${order.price}&${'stop' in order ? `stopPrice=${myMath.dps(order.price + order.stop, 2)}&` : ``}${'tif' in order ? `durationType=${order.tif}&` : ``}${'goodTil' in order ? `durationDateTime=${order.goodTil}&` : ``}${'stop' in order ? `stopLoss=${myMath.dps(order.price + order.stop, 2)}&` : ``}${'take' in order ? `takeProfit=${myMath.dps(order.price + order.take, 2)}&` : ``}${'digSig' in order ? `digitalSignature=${order.digSig}&` : ``}${'id' in order? `requestId=${order.id}&` : ``}`;
-    console.log(params);
+    console.debug(params);
     return params;
 }
 
@@ -22,7 +22,7 @@ function processMessage(msg, requestFactory) {
         request.open('POST', tvs.sendOrderURL);
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         request.onload = function() {
-            console.log(this.responseText)
+            console.debug(this.responseText)
         };
         request.send(createOrderParams(msg.payload));
     } else {

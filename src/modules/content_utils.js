@@ -18,9 +18,9 @@ function correctTVDTS(tvDTS) {
 function withinSeconds(dts, seconds) {
     var now = new Date();
     var dtsDiff = Math.abs(now - dts); 
-    console.log(now);
-    console.log(dts);
-    console.log("DTS Diff: seconds = " + dtsDiff / 1000);
+    console.debug(now);
+    console.debug(dts);
+    console.debug("DTS Diff: seconds = " + dtsDiff / 1000);
     // times are in milliseconds
     return (dtsDiff / 1000 >= seconds) ? false : true;
 }
@@ -33,13 +33,14 @@ function extractOrder(text) {
     if(idxS > -1 && idxE > -1 && idxS + 4 < text.length) {
         try {
             var order = JSON.parse(text.slice(idxS + 4, idxE));
-            console.log(order);
+            console.debug(order);
             return order;
         } catch(e) {
-            console.log("Error parsing order text: " + e);
+            console.error("Error parsing order text: " + e);
         }
+    } else {
+        console.error("Could not find TVE:/:EVT bounds in text: " + text);
     }
-    console.log("Could not find TVE:/:EVT bounds in text: " + text);
     return null;
 }
 
