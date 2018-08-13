@@ -2,22 +2,24 @@ Installing Trading View Extender (TVE)...
 
 1. Install Chrome if you have not done so already. 
 2. Pull down the TVE code from the GIT repository onto a local drive.
-3. Go to chrome://extensions/ and check the box for Developer mode in the top right.
-4. Go back to the chrome://extensions/ page and click the Load unpacked
-extension button and select the 'dist' folder under the directory into which you pulled the TVE code.
-5. The extension is now installed and you should see a greyed out version of the .png file (the 'page action') from the TVE images directory appear on the Chrome toolbar.
-6. Once you navigate to https://uk.tradingview.com this icon will become full colour to indicate that the extension is active.
-7. To operate the extension setup an alert trigger on any chart within TV and add some custom text of the form...
+3. Install node.js if not done so already (https://nodejs.org/en/).
+4. In the top level TVE directory enter 'npm install' to install all dev dependencies.
+5. Enter 'npm run build' to create the dist directory and TVE runtime files.
+6. Go to chrome://extensions/ and check the box for Developer mode in the top right.
+7. Go back to the chrome://extensions/ page and click the Load unpacked extension button and select the 'dist' folder under the directory into which you pulled the TVE code.
+8. The extension is now installed and you should see a greyed out version of the .png file (the 'page action') from the TVE images directory appear on the Chrome toolbar.
+9. Once you navigate to https://uk.tradingview.com this icon will become full colour to indicate that the extension is active.
+10. To operate the extension setup an alert trigger on any chart within TV and add some custom text of the form...
 
   TVE:{"ecn":"Binance","inst":"USDGBP", "side":"buy","type":"limit","tif":"GTD","price":0.84,"size":100,"take":0.05,"stop":-0.05}:EVT
 
-8. Start up the browser debugger (F12) and select the console tab... you should see log lines to the effect of...
+11. Start up the browser debugger (F12) and select the console tab... you should see log lines to the effect of...
 
     TVExtender Content...setting up comms port to background
     Background:connection established
     Setting up observer...
 
-9. The next time an alert triggers within TV you will see something akin to the following in the console log...
+12. The next time an alert triggers within TV you will see something akin to the following in the console log...
 
     MutationRecord {type: "childList", target: tbody, addedNodes: NodeList(1), removedNodes: NodeList(0), previousSibling: null, …}
     Thu Jul 19 2018 16:06:58 GMT+0100 (British Summer Time)
@@ -25,7 +27,7 @@ extension button and select the 'dist' folder under the directory into which you
     DTS Diff: seconds = 2
     {ecn: "Binance", inst: "USDGBP", side: "buy", type: "limit", tif: "GTD", …}
 
-10. To ensure the background script is also receiving the extracted orders, go to chrome://extensions and select the Background Page hyperlink from Trading View Extender 1.0. This will open another browser debugger showing the background script output, you should see log lines similar to the following...
+13. To ensure the background script is also receiving the extracted orders, go to chrome://extensions and select the Background Page hyperlink from Trading View Extender 1.0. This will open another browser debugger showing the background script output, you should see log lines similar to the following...
 
     Incoming connection on port: TVE-comms-port
     Object
@@ -33,17 +35,8 @@ extension button and select the 'dist' folder under the directory into which you
         type: order
         __proto__: Object
 
-11. You will also see an attempt to post the order message to the TVS server.
+14. You will also see an attempt to post the order message to the TVS server.
 
-12. The extension is now built using Webpack and transpiled using Babel, all
-the appropriate packages are installed in the node_modules directory (use 'npm
-install' to install dev deps identified in package.json). The config files can
-be found at the top of the project (.babelrc, webpack.config.js and
-package.json). 'npm run build' will create the dist directory and runtime
-packages.
+The extension is now built using Webpack and transpiled using Babel, all the appropriate packages are installed in the node_modules directory (use 'npm install' to install dev deps identified in package.json). The config files can be found at the top of the project (.babelrc, webpack.config.js and package.json). 'npm run build' will create the dist directory and runtime packages.
 
-13. Included the Mocha test framework and created unit tests under the 'test'
-directory. Run tests using 'npm test' from top level directory. NOTE: the
-pretest script will transpile the code with UMD style module replacement into
-the es7 directory. I need to do this so that I can continue to use new style
-imports/exports in the src but require in tests!
+Included the Mocha test framework and created unit tests under the 'test' directory. Run tests using 'npm test' from top level directory. NOTE: the pretest script will transpile the code with UMD style module replacement into the es7 directory. I need to do this so that I can continue to use new style imports/exports in the src but 'require' in tests!

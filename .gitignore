@@ -5,6 +5,7 @@
 *.swo
 
 # Ignore these directories as they are generatable via 'npm install'
-# and 'npm test' respectively.
+# 'npm test' and 'npm run build' respectively.
 /node_modules/
 /es7/
+/dist/
