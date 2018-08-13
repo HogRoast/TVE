@@ -96,7 +96,7 @@ describe('background_utils', function() {
             bkgd.processMessage(msg, factory); 
 
             assert.equal(request.method, 'POST');
-            assert.equal(request.url, 'http://localhost:8080/tradingview/v1/ui/accounts/accountId_example/orders');
+            assert.equal(request.url, 'http://localhost:8080/tradingview/v1/accounts/accountId_example/orders');
             assert.equal(request.headers['Content-type'], 'application/x-www-form-urlencoded');
             var expected = 'accountId=accountId_example&instrument=USDGBP&qty=100&side=buy&type=limit&limitPrice=0.84&';
             assert.equal(request.body, expected);
