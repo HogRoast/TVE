@@ -1,6 +1,6 @@
 'use strict';
 
-import * as tvs from './modules/background_utils.js';
+import * as bkgd from './modules/background_utils.js';
 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.runtime.onConnect.addListener(function(port) {
@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(function() {
                 factory.create = function() {
                     return new XMLHttpRequest();
                 };
-                processMessage(msg, XMLHttpRequest);
+                bkgd.processMessage(msg, factory);
             });
         }
     });

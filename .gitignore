@@ -1,3 +1,10 @@
+# gvim backup files
 .*~
 *~
 *.swp
+*.swo
+
+# Ignore these directories as they are generatable via 'npm install'
+# and 'npm test' respectively.
+/node_modules/
+/es7/
